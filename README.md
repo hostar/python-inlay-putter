@@ -6,7 +6,7 @@ Compatible with PyCharm IDE.
 ## Installation
 - download jar file from releases
 - open Settings -> Plugins
-- first gear icon on the top and then click "Install Plugin from Disk..."
+- click the gear icon at the top and then select "Install Plugin from Disk..."
 
 It is possible to disable inlay hints in Settings -> Editor -> Inlay Hints -> Python
 
