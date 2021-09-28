@@ -1,0 +1,12 @@
+<idea-plugin>
+    <name>Python Parameter Inlay Putter</name>
+    <vendor>hostar</vendor>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.python</depends>
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Show usage inlay (ignore the error) -->
+        <codeInsight.inlayProvider language="Python" implementationClass="io.github.hostar.pythonInlay.PythonParametersInlayProvider"/>
+    </extensions>
+</idea-plugin>
