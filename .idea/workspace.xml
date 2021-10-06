@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6c4e339-ed15-4c8a-9828-2ab53df1e777" name="Changes" comment="initial commit">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+    <list default="true" id="d6c4e339-ed15-4c8a-9828-2ab53df1e777" name="Changes" comment="readme update">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/hostar/pythonInlay/PythonParametersInlayProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/hostar/pythonInlay/PythonParametersInlayProvider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,9 +96,6 @@
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIC/2020.2.4/78de574a01ef65cf411f5cf8d1ac3876f879e1f3/ideaIC-2020.2.4-sources.jar!/com/intellij/extapi/psi/ASTWrapperPsiElement.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIC/2020.2.4/78de574a01ef65cf411f5cf8d1ac3876f879e1f3/ideaIC-2020.2.4-sources.jar!/com/intellij/psi/impl/PsiElementBase.java" root0="SKIP_INSPECTION" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
-  </component>
   <component name="ProjectId" id="1yIwR1nVbpRZXKe5o6o4SqXpGjM" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -106,47 +105,79 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="jdk.selected.PLUGIN_MODULE" value="IntelliJ IDEA Community Edition IC-212.5284.40" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.28965518" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Gradle.Python-Inlay-Putter [jar]">
-    <configuration name="Python-Inlay-Putter [buildPlugin]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PycharmProjects\Python-Inlay-Putter - kopie\src\test" />
+      <recent name="D:\PycharmProjects\Python-Inlay-Putter - kopie\src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.InlayTests">
+    <configuration name="InlayTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="buildPlugin" />
+        <option name="scriptParameters" value="--tests &quot;test.java.io.github.hostar.pythonInlay.InlayTests&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
-          <list />
+          <list>
+            <option value=":test" />
+          </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="Python-Inlay-Putter [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="InlayTests.testDataClass" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="build" />
+        <option name="scriptParameters" value="--tests &quot;test.java.io.github.hostar.pythonInlay.InlayTests.testDataClass&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
-          <list />
+          <list>
+            <option value=":test" />
+          </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="InlayTests.testSimpleFile" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;test.java.io.github.hostar.pythonInlay.InlayTests.testSimpleFile&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
@@ -220,18 +251,20 @@
     </configuration>
     <list>
       <item itemvalue="Gradle.Python-Inlay-Putter [jar]" />
-      <item itemvalue="Gradle.Python-Inlay-Putter [build]" />
-      <item itemvalue="Gradle.Python-Inlay-Putter [buildPlugin]" />
       <item itemvalue="Gradle.Python-Inlay-Putter [init]" />
       <item itemvalue="Gradle.Python-Inlay-Putter [runIde]" />
       <item itemvalue="Plugin.Unnamed" />
+      <item itemvalue="Gradle.InlayTests.testSimpleFile" />
+      <item itemvalue="Gradle.InlayTests.testDataClass" />
+      <item itemvalue="Gradle.InlayTests" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.InlayTests" />
+        <item itemvalue="Gradle.InlayTests.testDataClass" />
+        <item itemvalue="Gradle.InlayTests.testSimpleFile" />
         <item itemvalue="Gradle.Python-Inlay-Putter [runIde]" />
         <item itemvalue="Gradle.Python-Inlay-Putter [init]" />
-        <item itemvalue="Gradle.Python-Inlay-Putter [buildPlugin]" />
-        <item itemvalue="Gradle.Python-Inlay-Putter [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -391,7 +424,21 @@
       <option name="project" value="LOCAL" />
       <updated>1632864501802</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="configs added">
+      <created>1632864711215</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1632864711215</updated>
+    </task>
+    <task id="LOCAL-00023" summary="readme update">
+      <created>1632865404406</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1632865404406</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -438,7 +485,9 @@
     <MESSAGE value="added idea project" />
     <MESSAGE value="initial commit 2" />
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+    <MESSAGE value="configs added" />
+    <MESSAGE value="readme update" />
+    <option name="LAST_COMMIT_MESSAGE" value="readme update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -488,20 +537,29 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/io/github/hostar/pythonInlay/PythonParametersInlayProvider.java</url>
-          <line>146</line>
+          <line>197</line>
           <option name="timeStamp" value="96" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <condition expression="paramName.contains(&quot;qwe&quot;)" language="JAVA" />
-          <url>file://$PROJECT_DIR$/src/main/java/io/github/hostar/pythonInlay/PythonParametersInlayProvider.java</url>
-          <line>112</line>
-          <option name="timeStamp" value="118" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <condition expression="args.length == 1" language="JAVA" />
           <url>file://$PROJECT_DIR$/src/main/java/io/github/hostar/pythonInlay/PythonParametersInlayProvider.java</url>
           <line>124</line>
           <option name="timeStamp" value="119" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/io/github/hostar/pythonInlay/PythonParametersInlayProvider.java</url>
+          <line>260</line>
+          <option name="timeStamp" value="121" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/io/github/hostar/pythonInlay/PythonParametersInlayProvider.java</url>
+          <line>151</line>
+          <option name="timeStamp" value="128" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/io/github/hostar/pythonInlay/PythonParametersInlayProvider.java</url>
+          <line>167</line>
+          <option name="timeStamp" value="130" />
         </line-breakpoint>
         <line-breakpoint type="kotlin-line">
           <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.pycharm/pycharmPC/2021.2/1db18f8b10868bd1de1304de45ea135723a1f31d/pycharmPC-2021.2-sources.jar!/com/intellij/model/search/impl/SearchParametersQuery.kt</url>
@@ -539,9 +597,10 @@
         <watch expression="args[position + classOffset] instanceof PyKeywordArgument" language="JAVA" custom="com.jetbrains.python.psi.impl.PyKeywordArgumentImpl" />
         <watch expression="referenceAt.resolve()" language="JAVA" />
         <watch expression="element.getContainingFile()" language="JAVA" custom="com.jetbrains.python.psi.impl.PyStringLiteralExpressionImpl" />
-        <watch expression="args[position + classOffset]" language="JAVA" custom="com.jetbrains.python.psi.impl.PyCallExpressionImpl,com.jetbrains.python.psi.impl.PyExpressionStatementImpl" />
-        <watch expression="elem.getParent().getParent()" language="JAVA" custom="com.jetbrains.python.psi.impl.PyCallExpressionImpl,com.jetbrains.python.psi.impl.PyExpressionStatementImpl,com.jetbrains.python.psi.impl.PyFunctionImpl" />
+        <watch expression="pyExpressionStatement.getChildren()[0]" language="JAVA" custom="com.jetbrains.python.psi.impl.PyCallExpressionImpl,com.jetbrains.python.psi.impl.PyExpressionStatementImpl,com.jetbrains.python.psi.impl.PyArgumentListImpl" />
         <watch expression="element.getContainingFile()" language="JAVA" custom="com.jetbrains.python.psi.impl.PyCallExpressionImpl,com.jetbrains.python.psi.impl.PyExpressionStatementImpl" />
+        <watch expression="((PyReferenceImpl)referenceAt).myElement" custom="com.jetbrains.python.psi.impl.references.PyReferenceImpl" />
+        <watch expression="statement.getChildren()[0]" language="JAVA" custom="com.jetbrains.python.psi.impl.PyCallExpressionImpl,com.jetbrains.python.psi.impl.PyExpressionStatementImpl,com.jetbrains.python.psi.impl.PyFunctionImpl" />
       </configuration>
     </watches-manager>
   </component>

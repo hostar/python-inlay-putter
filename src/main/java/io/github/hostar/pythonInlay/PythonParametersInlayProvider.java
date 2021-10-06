@@ -139,6 +139,57 @@ public class PythonParametersInlayProvider implements InlayHintsProvider<NoSetti
                                         position++;
                                     }
                                 }
+
+                                // handle dataclass
+                                if ((child instanceof PyDecoratorList)) {
+                                    if (child.getText().equals("@dataclass")) {
+                                        // search for PyStatementList
+                                        for (PsiElement child2 : elem.getChildren()) {
+                                            if ((child2 instanceof PyStatementList)) {
+                                                int position = 0;
+                                                for (PsiElement statement : child2.getChildren()) {
+                                                    String paramName = null;
+                                                    if ((statement instanceof PyTypeDeclarationStatement)) {
+                                                        PyTypeDeclarationStatement pyExpressionStatement = (PyTypeDeclarationStatement)statement;
+                                                        paramName = ((PyTargetExpression) pyExpressionStatement.getChildren()[0]).getName();
+                                                        //paramName = pyExpressionStatement.getName();
+                                                    }
+
+                                                    if ((statement instanceof PyExpressionStatement)) {
+                                                        var refExpression = statement.getChildren()[0];
+                                                        if (refExpression instanceof PyReferenceExpression) {
+                                                            PyReferenceExpression pyExpressionStatement = (PyReferenceExpression)refExpression;
+                                                            //paramName = ((PyTargetExpression) pyExpressionStatement.getChildren()[0]).getName();
+                                                            paramName = pyExpressionStatement.getName();
+                                                        }
+                                                    }
+
+                                                    if ((statement instanceof PyAssignmentStatement)) {
+                                                        var refExpression = statement.getChildren()[0];
+                                                        if (refExpression instanceof PyTargetExpression) {
+                                                            PyTargetExpression pyTargetExpression = (PyTargetExpression)refExpression;
+                                                            //paramName = ((PyTargetExpression) pyExpressionStatement.getChildren()[0]).getName();
+                                                            paramName = pyTargetExpression.getName();
+                                                        }
+                                                    }
+
+                                                    if (paramName != null) {
+
+                                                        PyExpression[] finalArgs1 = args;
+                                                        int finalPosition1 = position;
+                                                        boolean match = existingInlaysDictionary.stream().anyMatch(x -> x.position == finalArgs1[finalPosition1].getTextOffset());
+
+                                                        if (!match) {
+                                                            addSink(sink, paramName, args[position]);
+                                                            position++;
+                                                            existingInlaysDictionary.add(new ExistingInlay(paramName, finalArgs1[finalPosition1].getTextOffset()));
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
