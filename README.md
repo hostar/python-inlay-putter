@@ -15,7 +15,7 @@ Example of what does it look like before/after:
 
 ## TODO
 
-- add unit tests
+- add unit tests (partially done)
 - do not generate anything inside external libs code
 - add blacklist for builtins (partially done)
 - ignore "self" param in case of class (partially done)
