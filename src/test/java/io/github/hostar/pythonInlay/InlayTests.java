@@ -49,13 +49,30 @@ public class InlayTests extends InlayHintsProviderTestCase {
                       "class InventoryItem:\n" +
                       "    \"\"\"Class for keeping track of an item in inventory.\"\"\"\n" +
                       "    name: str\n" +
-                      "    unit_price\n" +
+                      "    unit_price: float\n" +
                       "    quantity_on_hand: int = 0\n" +
                       "\n" +
                       "    def total_cost(self) -> float:\n" +
                       "        return self.unit_price * self.quantity_on_hand\n" +
                       "\n" +
                       "item = InventoryItem(<# name #>\"myName\",<# unit_price #>12.0,quantity_on_hand=5)";
+        testTypeHints(text);
+    }
+
+    public void testDataClass2() {
+        String text = "from dataclasses import dataclass\n" +
+                      "\n" +
+                      "@dataclass\n" +
+                      "class InventoryItem:\n" +
+                      "    \"\"\"Class for keeping track of an item in inventory.\"\"\"\n" +
+                      "    name: str\n" +
+                      "    unit_price: float\n" +
+                      "    quantity_on_hand: int = 0\n" +
+                      "\n" +
+                      "    def total_cost(self) -> float:\n" +
+                      "        return self.unit_price * self.quantity_on_hand\n" +
+                      "\n" +
+                      "item = InventoryItem(<# name #>\"myName\",quantity_on_hand=5)";
         testTypeHints(text);
     }
 }

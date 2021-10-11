@@ -150,16 +150,14 @@ public class PythonParametersInlayProvider implements InlayHintsProvider<NoSetti
                                                 for (PsiElement statement : child2.getChildren()) {
                                                     String paramName = null;
                                                     if ((statement instanceof PyTypeDeclarationStatement)) {
-                                                        PyTypeDeclarationStatement pyExpressionStatement = (PyTypeDeclarationStatement)statement;
+                                                        PyTypeDeclarationStatement pyExpressionStatement = (PyTypeDeclarationStatement) statement;
                                                         paramName = ((PyTargetExpression) pyExpressionStatement.getChildren()[0]).getName();
-                                                        //paramName = pyExpressionStatement.getName();
                                                     }
 
                                                     if ((statement instanceof PyExpressionStatement)) {
                                                         var refExpression = statement.getChildren()[0];
                                                         if (refExpression instanceof PyReferenceExpression) {
                                                             PyReferenceExpression pyExpressionStatement = (PyReferenceExpression)refExpression;
-                                                            //paramName = ((PyTargetExpression) pyExpressionStatement.getChildren()[0]).getName();
                                                             paramName = pyExpressionStatement.getName();
                                                         }
                                                     }
@@ -176,15 +174,16 @@ public class PythonParametersInlayProvider implements InlayHintsProvider<NoSetti
                                                     */
 
                                                     if (paramName != null) {
+                                                        if (validArgValue(args[position])) {
+                                                            PyExpression[] finalArgs1 = args;
+                                                            int finalPosition1 = position;
+                                                            boolean match = existingInlaysDictionary.stream().anyMatch(x -> x.position == finalArgs1[finalPosition1].getTextOffset());
 
-                                                        PyExpression[] finalArgs1 = args;
-                                                        int finalPosition1 = position;
-                                                        boolean match = existingInlaysDictionary.stream().anyMatch(x -> x.position == finalArgs1[finalPosition1].getTextOffset());
-
-                                                        if (!match) {
-                                                            addSink(sink, paramName, args[position]);
-                                                            position++;
-                                                            existingInlaysDictionary.add(new ExistingInlay(paramName, finalArgs1[finalPosition1].getTextOffset()));
+                                                            if (!match) {
+                                                                addSink(sink, paramName, args[position]);
+                                                                position++;
+                                                                existingInlaysDictionary.add(new ExistingInlay(paramName, finalArgs1[finalPosition1].getTextOffset()));
+                                                            }
                                                         }
                                                     }
                                                 }
