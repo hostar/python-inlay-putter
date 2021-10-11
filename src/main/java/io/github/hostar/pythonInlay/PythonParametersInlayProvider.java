@@ -164,6 +164,7 @@ public class PythonParametersInlayProvider implements InlayHintsProvider<NoSetti
                                                         }
                                                     }
 
+                                                    /* // here this is not needed, but in future it could be useful somewhere else
                                                     if ((statement instanceof PyAssignmentStatement)) {
                                                         var refExpression = statement.getChildren()[0];
                                                         if (refExpression instanceof PyTargetExpression) {
@@ -172,6 +173,7 @@ public class PythonParametersInlayProvider implements InlayHintsProvider<NoSetti
                                                             paramName = pyTargetExpression.getName();
                                                         }
                                                     }
+                                                    */
 
                                                     if (paramName != null) {
 

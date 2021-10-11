@@ -55,7 +55,7 @@ public class InlayTests extends InlayHintsProviderTestCase {
                       "    def total_cost(self) -> float:\n" +
                       "        return self.unit_price * self.quantity_on_hand\n" +
                       "\n" +
-                      "item = InventoryItem(<# name #>\"myName\",<# unit_price #>12.0,<# quantity_on_hand #>5)";
+                      "item = InventoryItem(<# name #>\"myName\",<# unit_price #>12.0,quantity_on_hand=5)";
         testTypeHints(text);
     }
 }
