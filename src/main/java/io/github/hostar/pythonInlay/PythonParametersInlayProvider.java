@@ -79,8 +79,10 @@ public class PythonParametersInlayProvider implements InlayHintsProvider<NoSetti
                     if (referenceAt != null) {
                         if (secondElem != null) {
                             if (!referenceAt.getCanonicalText().equals(((PyReferenceExpression) secondElem).getName())) {
-                                var tmp = element.findReferenceAt(((PyReferenceExpression) secondElem).getName().length());
-                                if (tmp != null) referenceAt = tmp;
+                                var tmp = secondElem.getReferences();
+                                if (tmp.length > 0) {
+                                    referenceAt = tmp[0];
+                                }
                             }
                         }
 
@@ -113,11 +115,27 @@ public class PythonParametersInlayProvider implements InlayHintsProvider<NoSetti
                                         if (paramName != null) {
                                             if (!parameter.getFirstChild().getText().startsWith("*")) {
                                                 if (position == 0) {
-                                                    if (((PyFunction) elem).getContainingClass() != null) {
-                                                        // when class, ignore first parameter
-                                                        position++;
-                                                        classOffset = -1;
-                                                        continue;
+                                                    if (elem instanceof PyFunction) {
+                                                        boolean isStatic = false;
+                                                        for (PsiElement elemChild : elem.getChildren()) {
+                                                            if (elemChild instanceof PyDecoratorList) {
+                                                                for (PyDecorator decorator : ((PyDecoratorList) elemChild).getDecorators()) {
+                                                                    if (decorator.getName().contains("staticmethod")) {
+                                                                        // do not skip first arg in static methods
+                                                                        isStatic = true;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+
+                                                        if (!isStatic) {
+                                                            if (((PyFunction) elem).getContainingClass() != null) {
+                                                                // when class, ignore first parameter
+                                                                position++;
+                                                                classOffset = -1;
+                                                                continue;
+                                                            }
+                                                        }
                                                     }
                                                 }
 
@@ -142,7 +160,25 @@ public class PythonParametersInlayProvider implements InlayHintsProvider<NoSetti
 
                                 // handle dataclass
                                 if ((child instanceof PyDecoratorList)) {
-                                    if (child.getText().equals("@dataclass")) {
+
+                                    boolean doNotGoIntoDataClass = false;
+                                    int tmpPos = 0;
+                                    var tmpElementList = element.getChildren();
+                                    for (PsiElement elementChildTmp : tmpElementList) {
+                                        tmpPos++;
+                                        if (elementChildTmp instanceof PyReferenceExpression) {
+                                            var tmpRef = ((PyReferenceExpression)elementChildTmp).getReference().resolve();
+
+                                            if (!(tmpRef instanceof PyClass)) {
+                                                if (tmpElementList[tmpPos] instanceof PyArgumentList) {
+                                                    doNotGoIntoDataClass = true;
+                                                }
+                                            }
+                                            break;
+                                        }
+                                    }
+
+                                    if (child.getText().equals("@dataclass") && !doNotGoIntoDataClass) {
                                         // search for PyStatementList
                                         for (PsiElement child2 : elem.getChildren()) {
                                             if ((child2 instanceof PyStatementList)) {
