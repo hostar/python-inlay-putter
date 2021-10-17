@@ -3,6 +3,9 @@
 This plugin will add inlay hints to the function calls in Python.
 Compatible with PyCharm IDE.
 
+Build status:
+[![Gradle Package](https://github.com/hostar/python-inlay-putter/actions/workflows/gradle-publish.yml/badge.svg)](https://github.com/hostar/python-inlay-putter/actions/workflows/gradle-publish.yml)
+
 ## Installation
 - download jar file from releases
 - open Settings -> Plugins
