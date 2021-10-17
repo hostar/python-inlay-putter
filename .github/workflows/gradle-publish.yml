@@ -8,12 +8,8 @@ on:
     types: [created]
   workflow_dispatch:
     inputs:
-      logLevel:
-          description: 'Log level'     
-          required: true
-          default: 'warning'
       tags:
-          description: 'Test scenario tags'
+          description: 'Manual run'
       
 
 jobs:
@@ -35,7 +31,7 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Build with Gradle
-      run: gradle build
+      run: gradle build jar
 
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
