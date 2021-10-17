@@ -33,6 +33,12 @@ jobs:
     - name: Build with Gradle
       run: gradle jar
       
+    - name: Content list
+      uses: enricomarino/actions@v2
+      with:
+        # The folder to inspect
+        source: /
+      
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.4
       with:
