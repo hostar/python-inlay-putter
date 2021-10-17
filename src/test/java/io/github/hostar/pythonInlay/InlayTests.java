@@ -117,4 +117,25 @@ public class InlayTests extends InlayHintsProviderTestCase {
                 "InventoryItem.iamstatic(<# aa #>\"myName\",<# bb #>\"myName2\")\n";
         testTypeHints(text);
     }
+
+    public void testChildMethod() {
+        String text = "class Child:\n" +
+                "    def print_word(self, word):\n" +
+                "        print(word)\n" +
+                "\n" +
+                "\n" +
+                "class Parent:\n" +
+                "    def __init__(self):\n" +
+                "        self.child = Child()\n" +
+                "    \n" +
+                "    @property\n" +
+                "    def get_child(self):\n" +
+                "        return Child()\n" +
+                "\n" +
+                "\n" +
+                "a = Parent()\n" +
+                "a.child.print_word(<# word #>'now working')\n" +
+                "a.get_child.print_word(<# word #>'now working')";
+        testTypeHints(text);
+    }
 }

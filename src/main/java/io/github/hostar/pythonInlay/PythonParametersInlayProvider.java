@@ -56,7 +56,11 @@ public class PythonParametersInlayProvider implements InlayHintsProvider<NoSetti
             private void processElement(@NotNull PsiElement element, @NotNull InlayHintsSink sink, PsiElement secondElem) {
                 try {
                     PyExpression[] args = null;
-                    for (PsiElement elementChildTmp : element.getChildren()) {
+                    int childrenPosition = 0;
+                    PsiElement[] elementChildren = element.getChildren();
+
+                    for (PsiElement elementChildTmp : elementChildren) {
+                        childrenPosition++;
                         if (elementChildTmp instanceof PyArgumentList) {
                             args = ((PyArgumentList) elementChildTmp).getArguments();
                             break;
@@ -73,7 +77,16 @@ public class PythonParametersInlayProvider implements InlayHintsProvider<NoSetti
 
                         referenceAt = element.findReferenceAt(element.getStartOffsetInParent() + 1);
                     } else {
-                        referenceAt = element.findReferenceAt(2);
+                        if (childrenPosition >= 2) {
+                            var refs = elementChildren[childrenPosition - 2].getReferences();
+                            if (refs.length > 0) {
+                                referenceAt = refs[0];
+                            } else {
+                                referenceAt = element.findReferenceAt(2);
+                            }
+                        } else {
+                            referenceAt = element.findReferenceAt(2);
+                        }
                     }
 
                     if (referenceAt != null) {
@@ -163,14 +176,13 @@ public class PythonParametersInlayProvider implements InlayHintsProvider<NoSetti
 
                                     boolean doNotGoIntoDataClass = false;
                                     int tmpPos = 0;
-                                    var tmpElementList = element.getChildren();
-                                    for (PsiElement elementChildTmp : tmpElementList) {
+                                    for (PsiElement elementChildTmp : elementChildren) {
                                         tmpPos++;
                                         if (elementChildTmp instanceof PyReferenceExpression) {
                                             var tmpRef = ((PyReferenceExpression)elementChildTmp).getReference().resolve();
 
                                             if (!(tmpRef instanceof PyClass)) {
-                                                if (tmpElementList[tmpPos] instanceof PyArgumentList) {
+                                                if (elementChildren[tmpPos] instanceof PyArgumentList) {
                                                     doNotGoIntoDataClass = true;
                                                 }
                                             }
