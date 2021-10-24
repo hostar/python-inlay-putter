@@ -4,20 +4,25 @@ import com.intellij.codeInsight.hints.*;
 import com.intellij.codeInsight.hints.presentation.InlayPresentation;
 import com.intellij.lang.Language;
 import com.intellij.openapi.editor.Editor;
-import com.intellij.psi.*;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiReference;
+import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.util.ui.UI;
 import com.jetbrains.python.PythonLanguage;
 import com.jetbrains.python.psi.*;
 import com.jetbrains.python.psi.impl.references.PyQualifiedReference;
+import com.jetbrains.python.psi.resolve.PyResolveContext;
+import com.jetbrains.python.psi.resolve.PyResolveUtil;
+import com.jetbrains.python.psi.types.TypeEvalContext;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import com.intellij.psi.util.PsiTreeUtil;
 
 import javax.swing.*;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.*;
+import java.util.ArrayList;
 
 public class PythonParametersInlayProvider implements InlayHintsProvider<NoSettings> {
     private static final String CODE_LENS_ID = "PythonInlay";
@@ -101,6 +106,29 @@ public class PythonParametersInlayProvider implements InlayHintsProvider<NoSetti
 
                         PsiElement elem = referenceAt.resolve();
 
+                        if (elem == null) {
+                            // in case the reference is way too advanced, create new TypeEvalContext of type userInitiated, forcing the resolve process to be more thorough
+                            PyReferenceOwner referenceOwner = null;
+                            if (!(element instanceof PyReferenceOwner)) {
+                                // try to search for PyReferenceOwner
+                                for (PsiElement child : element.getChildren()) {
+                                    if (child instanceof PyReferenceOwner) {
+                                        referenceOwner = (PyReferenceOwner)child;
+                                        break;
+                                    }
+                                }
+
+                            }
+                            else {
+                                referenceOwner = (PyReferenceOwner)element;
+                            }
+
+                            if (referenceOwner != null) {
+                                PyResolveContext context =
+                                        PyResolveContext.defaultContext(TypeEvalContext.userInitiated(element.getProject(), element.getContainingFile()));
+                                elem = PyResolveUtil.resolveDeclaration(referenceOwner.getReference(context), context);
+                            }
+                        }
                         if ((elem == null) && (multiRef != null)) {
                             var tmp = multiRef.multiResolve(false);
                             if (tmp.length > 0) {
