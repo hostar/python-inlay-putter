@@ -29,6 +29,8 @@ public class PythonParametersInlayProvider implements InlayHintsProvider<NoSetti
 
     private static final SettingsKey<NoSettings> KEY = new SettingsKey<>(CODE_LENS_ID);
 
+    private static Boolean addColonSuffix = False;
+
     @Nullable
     @Override
     public InlayHintsCollector getCollectorFor(@NotNull PsiFile file,
@@ -189,6 +191,9 @@ public class PythonParametersInlayProvider implements InlayHintsProvider<NoSetti
 
                                                             if (!match) {
                                                                 addSink(sink, paramName, args[finalPosition]);
+                                                                if addColonSuffix{
+                                                                    paramName += ":";
+                                                                }
                                                                 existingInlaysDictionary.add(new ExistingInlay(paramName, args[finalPosition].getTextOffset()));
                                                             }
                                                     }
@@ -258,6 +263,9 @@ public class PythonParametersInlayProvider implements InlayHintsProvider<NoSetti
                                                             if (!match) {
                                                                 addSink(sink, paramName, args[position]);
                                                                 position++;
+                                                                if addColonSuffix{
+                                                                    paramName += ":";
+                                                                }
                                                                 existingInlaysDictionary.add(new ExistingInlay(paramName, finalArgs1[finalPosition1].getTextOffset()));
                                                             }
                                                         }
