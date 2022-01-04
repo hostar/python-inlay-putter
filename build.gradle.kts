@@ -68,16 +68,9 @@ tasks {
         options.compilerArgs.add("-Xlint:all")
     }
 
-    runPluginVerifier {
-        val versions = properties("kpxPluginVerifierIdeVersions")
-                .split(",")
-                .map(String::trim)
-                .filter(String::isNotEmpty)
-        // Kinda useless since the pluginVerifier will cry out
-        // anyway, but may not setting a version will be implemented at some point.
-        if (versions.isNotEmpty()) {
-            ideVersions.set(versions)
-        }
+    patchPluginXml {
+        sinceBuild.set(properties("kpxPluginSinceBuild"))
+        untilBuild.set(properties("kpxPluginUntilBuild"))
     }
 
     publishPlugin {
