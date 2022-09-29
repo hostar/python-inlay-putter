@@ -1,4 +1,6 @@
-# Python Parameter Inlay Putter
+# Depreceated, please use this instead: https://github.com/WhiteMemory99/Intellij-Python-Inlay-Params
+
+## Python Parameter Inlay Putter
 
 This plugin will add inlay hints to the function calls in Python.
 Compatible with PyCharm IDE.
